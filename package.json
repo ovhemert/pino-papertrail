@@ -1,0 +1,41 @@
+{
+  "name": "pino-papertrail",
+  "version": "1.0.0",
+  "description": "A transport for pino that sends messages to Papertrail",
+  "homepage": "https://github.com/ovhemert/pino-papertrail",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.test.js",
+    "lint": "standard"
+  },
+  "bin": {
+    "pino-papertrail": "./index.js"
+  },
+  "keywords": [
+    "pino",
+    "pino-transport",
+    "logging",
+    "papertrail"
+  ],
+  "author": "Osmond van Hemert <osmond@vanhemert.nu>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovhemert/pino-papertrail.git"
+  },
+  "precommit": [
+    "lint",
+    "test"
+  ],
+  "devDependencies": {
+    "pino": "^4.17.3",
+    "standard": "^11.0.1",
+    "tap": "^12.0.1"
+  },
+  "dependencies": {
+    "fast-json-parse": "^1.0.3",
+    "glossy": "^0.1.7",
+    "pump": "^3.0.0",
+    "split2": "^2.2.0"
+  }
+}

@@ -1,0 +1,14 @@
+
+  [0m[37m[1m[4mpino-papertrail[22m[39m[0m
+
+  [0mTo send [33mpino[39m logs to papertrail:[0m
+
+     [33mcat log | pino-papertrail --host 192.168.1.42[39m
+
+  [36m[1mFlags[22m[39m
+  [0m-h  | --help              display Help
+  -v  | --version           display version
+  -a  | --appname           the name of the application; default: pino
+  -e  | --echo              echo messages to the console; default: true
+  -H  | --host              the hostname of papertrail; default: localhost
+  -p  | --port              the port of papertrail; default: 1234
