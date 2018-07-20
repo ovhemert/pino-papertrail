@@ -1,5 +1,6 @@
 'use strict'
 
+const dgram = require('dgram')
 const path = require('path')
 const spawn = require('child_process').spawn
 const test = require('tap').test
@@ -39,17 +40,19 @@ test('skips non-json input', (t) => {
   app.stdin.end('this is not json\n')
 })
 
-// test('does not echo message', (t) => {
-//   t.plan(1)
-//   const app = spawn('node', [appPath, '-e', 'false'])
-//   app.stdout.on('data', (data) => {
-//     t.fail('should not receive any data')
-//   })
-//   app.on('close', (code) => {
-//     t.is(code, 0)
-//   })
-//   app.stdin.end(`${messages.infoMessage}\n`)
-// })
+test('parses message without time-prop', (t) => {
+  t.plan(3)
+  const app = spawn('node', [appPath])
+  app.stdout.on('data', (data) => {
+    const msg = data.toString()
+    t.ok(msg.startsWith('<14>1 2018'))
+    t.ok(msg.includes('"level":30'))
+    t.ok(msg.includes('"info message"'))
+    app.kill()
+  })
+  let msg = messages.infoMessage.replace('"time":1532081790743,', '')
+  app.stdin.end(`${msg}\n`)
+})
 
 test('parses trace message', (t) => {
   t.plan(3)
@@ -121,7 +124,6 @@ test('parses fatal message', (t) => {
   const app = spawn('node', [appPath])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
-    console.log(msg)
     t.ok(msg.startsWith('<10>1 2018'))
     t.ok(msg.includes('"level":60'))
     t.ok(msg.includes('"fatal message"'))
@@ -135,11 +137,39 @@ test('parses fatal message', (t) => {
   const app = spawn('node', [appPath])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
-    console.log(msg)
     t.ok(msg.startsWith('<10>1 2018'))
     t.ok(msg.includes('"level":60'))
     t.ok(msg.includes('"fatal message"'))
     app.kill()
   })
   app.stdin.end(`${messages.fatalMessage}\n`)
+})
+
+test('sends to udp', (t) => {
+  t.plan(2)
+  const app = spawn('node', [appPath, '-e', true])
+  app.stdout.on('data', (data) => {
+    t.fail('should not receive any data')
+  })
+  app.on('close', (code) => {
+    socket.close()
+    t.is(code, 0)
+  })
+  const socket = dgram.createSocket('udp4')
+  socket.on('message', msg => {
+    const res = msg.toString()
+    t.ok(res.startsWith('<14>1 2018'))
+    app.kill()
+  })
+  socket.on('error', () => {
+    t.fail('socket error')
+    app.kill()
+  })
+  socket.bind({ address: '127.0.0.1', port: 1234 }, (err) => {
+    if (err) {
+      t.fail('socket bind error')
+      return app.kill()
+    }
+    app.stdin.end(`${messages.infoMessage}\n`)
+  })
 })
