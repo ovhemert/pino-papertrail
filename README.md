@@ -1,5 +1,7 @@
 # pino-papertrail
 
+[![Build Status](https://travis-ci.com/ovhemert/pino-papertrail.svg?branch=master)](https://travis-ci.com/ovhemert/pino-papertrail)
+
 This module provides a "transport" for [pino][pino] that forwards
 messages to the [papertrail][papertrail] log service through an UDPv4 socket. The module can echo the received logs or work silently.
 
