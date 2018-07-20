@@ -6,7 +6,7 @@
      [33mcat log | pino-papertrail --host 192.168.1.42[39m
 
   [36m[1mFlags[22m[39m
-  [0m-h  | --help              display Help
+  [0m-h  | --help              display help
   -v  | --version           display version
   -a  | --appname           the name of the application; default: pino
   -e  | --echo              echo messages to the console; default: true
