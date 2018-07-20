@@ -1,6 +1,10 @@
 'use strict'
 
 const pino = require('pino')
-const log = pino({ level: 'debug' })
+const log = pino({ level: 'trace' })
 
-log.debug({ foo: 'bar' })
+log.fatal('fatal message')
+log.debug('debug message')
+log.info('info message')
+log.warn('warning message')
+log.error(new Error('error message'))
