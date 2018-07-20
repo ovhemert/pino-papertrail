@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.com/ovhemert/pino-papertrail.svg?branch=master)](https://travis-ci.com/ovhemert/pino-papertrail)
 [![Dependencies](https://img.shields.io/david/ovhemert/pino-papertrail.svg)](https://david-dm.org/ovhemert/pino-papertrail)
 [![Known Vulnerabilities](https://snyk.io/test/npm/pino-papertrail/badge.svg)](https://snyk.io/test/npm/pino-papertrail)
+[![Coverage Status](https://coveralls.io/repos/github/ovhemert/pino-papertrail/badge.svg?branch=master)](https://coveralls.io/github/ovhemert/pino-papertrail?branch=master)
 [![npm](https://img.shields.io/npm/v/pino-papertrail.svg)](https://www.npmjs.com/package/pino-papertrail)
 [![npm](https://img.shields.io/npm/dm/pino-papertrail.svg)](https://www.npmjs.com/package/pino-papertrail)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
