@@ -1,6 +1,10 @@
 'use strict'
 
 module.exports = {
-  helloWorld: '{"pid":94473,"hostname":"MacBook-Pro-3","level":30,"msg":"hello world","time":1459529098958,"v":1}',
-  stupidLong: '{"pid":94473,"hostname":"MacBook-Pro-3","level":30,"msg":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at","time":1459529098958,"v":1}'
+  traceMessage: '{"level":10,"time":1532081790741,"msg":"trace message","pid":9118,"hostname":"Osmonds-MacBook-Pro.local","v":1}',
+  debugMessage: '{"level":20,"time":1532081790742,"msg":"debug message","pid":9118,"hostname":"Osmonds-MacBook-Pro.local","v":1}',
+  infoMessage: '{"level":30,"time":1532081790743,"msg":"info message","pid":9118,"hostname":"Osmonds-MacBook-Pro.local","v":1}',
+  warnMessage: '{"level":40,"time":1532081790744,"msg":"warning message","pid":9118,"hostname":"Osmonds-MacBook-Pro.local","v":1}',
+  errorMessage: '{"level":50,"time":1532081790745,"msg":"error message","pid":9118,"hostname":"Osmonds-MacBook-Pro.local","type":"Error","stack":"Error: error message","v":1}',
+  fatalMessage: '{"level":60,"time":1532081790746,"msg":"fatal message","pid":9118,"hostname":"Osmonds-MacBook-Pro.local","v":1}'
 }
