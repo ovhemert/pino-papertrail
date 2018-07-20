@@ -5,7 +5,7 @@
   "homepage": "https://github.com/ovhemert/pino-papertrail",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.test.js",
+    "test": "tap test/*.test.js --coverage",
     "lint": "standard"
   },
   "bin": {
@@ -23,8 +23,8 @@
     "type": "git",
     "url": "https://github.com/ovhemert/pino-papertrail.git"
   },
-  "engines" : {
-    "node" : ">=8.9.0"
+  "engines": {
+    "node": ">=8.9.0"
   },
   "precommit": [
     "lint",
@@ -38,6 +38,7 @@
   "dependencies": {
     "fast-json-parse": "^1.0.3",
     "glossy": "^0.1.7",
+    "minimist": "^1.2.0",
     "pump": "^3.0.0",
     "split2": "^2.2.0"
   }
