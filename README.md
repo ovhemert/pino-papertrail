@@ -1,6 +1,11 @@
 # pino-papertrail
 
 [![Build Status](https://travis-ci.com/ovhemert/pino-papertrail.svg?branch=master)](https://travis-ci.com/ovhemert/pino-papertrail)
+[![Dependencies](https://img.shields.io/david/ovhemert/pino-papertrail.svg)](https://david-dm.org/ovhemert/pino-papertrail)
+[![Known Vulnerabilities](https://snyk.io/test/npm/pino-papertrail/badge.svg)](https://snyk.io/test/npm/pino-papertrail)
+[![npm](https://img.shields.io/npm/v/pino-papertrail.svg)](https://www.npmjs.com/package/pino-papertrail)
+[![npm](https://img.shields.io/npm/dm/pino-papertrail.svg)](https://www.npmjs.com/package/pino-papertrail)
+
 
 This module provides a "transport" for [pino][pino] that forwards
 messages to the [papertrail][papertrail] log service through an UDPv4 socket. The module can echo the received logs or work silently.
