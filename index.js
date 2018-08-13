@@ -50,7 +50,7 @@ function shutdown () {
   }
 }
 
-process.on('SIGINT', function () { shutdown() })
+// process.on('SIGINT', function () { shutdown() })
 process.on('SIGTERM', function () { shutdown() })
 
 pump(process.stdin, parseJson, toSyslog, papertrail)
