@@ -5,8 +5,10 @@
   "homepage": "https://github.com/ovhemert/pino-papertrail",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.test.js --coverage",
-    "lint": "standard"
+    "lint": "standard",
+    "test": "standard && tap test/*.test.js --coverage --100",
+    "test:report": "standard && tap test/*.test.js --coverage  --coverage-report=html --100",
+    "posttest": "tap --coverage --coverage-report=lcovonly"
   },
   "bin": {
     "pino-papertrail": "./index.js"
@@ -31,7 +33,7 @@
     "test"
   ],
   "devDependencies": {
-    "pino": "^4.17.3",
+    "pino": "*",
     "standard": "^11.0.1",
     "tap": "^12.0.1"
   },
