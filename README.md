@@ -1,6 +1,7 @@
 # pino-papertrail
 
 [![Travis](https://img.shields.io/travis/com/ovhemert/pino-papertrail.svg?branch=master&logo=travis)](https://travis-ci.com/ovhemert/pino-papertrail)
+[![AppVeyor](https://img.shields.io/appveyor/ci/ovhemert/pino-papertrail.svg?logo=appveyor)](https://ci.appveyor.com/project/ovhemert/pino-papertrail)
 [![Dependencies](https://img.shields.io/david/ovhemert/pino-papertrail.svg)](https://david-dm.org/ovhemert/pino-papertrail)
 [![Known Vulnerabilities](https://snyk.io/test/npm/pino-papertrail/badge.svg)](https://snyk.io/test/npm/pino-papertrail)
 [![Coverage Status](https://coveralls.io/repos/github/ovhemert/pino-papertrail/badge.svg?branch=master)](https://coveralls.io/github/ovhemert/pino-papertrail?branch=master)
