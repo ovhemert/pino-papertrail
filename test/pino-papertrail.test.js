@@ -147,7 +147,7 @@ test('parses fatal message', (t) => {
 
 test('sends to udp', (t) => {
   t.plan(2)
-  const app = spawn('node', [appPath, '-e', true])
+  const app = spawn('node', [appPath, '-e', true, '-p', '12345'])
   app.stdout.on('data', (data) => {
     t.fail('should not receive any data')
   })
@@ -165,7 +165,7 @@ test('sends to udp', (t) => {
     t.fail('socket error')
     app.kill()
   })
-  socket.bind({ address: '127.0.0.1', port: 1234 }, (err) => {
+  socket.bind({ address: '127.0.0.1', port: 12345 }, (err) => {
     if (err) {
       t.fail('socket bind error')
       return app.kill()
