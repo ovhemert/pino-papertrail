@@ -17,13 +17,15 @@ const options = {
     echo: 'e',
     host: 'H',
     port: 'p',
-    appname: 'a'
+    appname: 'a',
+    'message-only': 'm'
   },
   default: {
     appname: 'pino',
     echo: true,
     host: 'localhost',
-    port: '1234'
+    port: '1234',
+    'message-only': false
   }
 }
 

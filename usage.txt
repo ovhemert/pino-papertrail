@@ -12,3 +12,4 @@
   -e  | --echo              echo messages to the console; default: true
   -H  | --host              the hostname of papertrail; default: localhost
   -p  | --port              the port of papertrail; default: 1234
+  -m  | --message-only      only send msg property to papertrail. default: false (=send json)
