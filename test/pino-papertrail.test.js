@@ -145,6 +145,20 @@ test('parses fatal message', (t) => {
   app.stdin.end(`${messages.fatalMessage}\n`)
 })
 
+test('can forward only message to papertrail', (t) => {
+  t.plan(4)
+  const app = spawn('node', [appPath, '-m'])
+  app.stdout.on('data', (data) => {
+    const msg = data.toString()
+    t.ok(msg.startsWith('<10>1 2018'))
+    t.ok(!msg.includes('"level":60'))
+    t.ok(!msg.includes('"fatal message"'))
+    t.ok(msg.includes('fatal message'))
+    app.kill()
+  })
+  app.stdin.end(`${messages.fatalMessage}\n`)
+})
+
 test('sends to udp', (t) => {
   t.plan(2)
   const app = spawn('node', [appPath, '-e', true, '-p', '12345'])
