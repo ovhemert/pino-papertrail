@@ -45,7 +45,7 @@ test('parses message without time-prop', (t) => {
   const app = spawn('node', [appPath])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
-    t.ok(msg.startsWith('<14>1 2018'))
+    t.ok(msg.startsWith('<14>1 ' + (new Date()).getFullYear()))
     t.ok(msg.includes('"level":30'))
     t.ok(msg.includes('"info message"'))
     app.kill()
