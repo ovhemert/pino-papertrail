@@ -34,9 +34,9 @@
     "test"
   ],
   "devDependencies": {
-    "pino": "^5.10.7",
+    "pino": "^5.11.1",
     "standard": "^12.0.0",
-    "tap": "^12.1.1"
+    "tap": "^12.5.2"
   },
   "dependencies": {
     "fast-json-parse": "^1.0.3",
