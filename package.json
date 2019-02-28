@@ -1,6 +1,6 @@
 {
   "name": "pino-papertrail",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A transport for pino that sends messages to Papertrail",
   "homepage": "https://github.com/ovhemert/pino-papertrail",
   "main": "index.js",
