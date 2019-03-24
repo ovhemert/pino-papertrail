@@ -12,7 +12,7 @@
     "posttest": "tap --coverage --coverage-report=lcovonly"
   },
   "bin": {
-    "pino-papertrail": "./index.js"
+    "pino-papertrail": "./cli.js"
   },
   "keywords": [
     "pino",
@@ -43,6 +43,7 @@
     "glossy": "^0.1.7",
     "minimist": "^1.2.0",
     "pump": "^3.0.0",
+    "pumpify": "^1.5.1",
     "split2": "^3.1.0",
     "through2": "^3.0.0"
   }

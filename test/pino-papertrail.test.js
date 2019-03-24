@@ -2,11 +2,13 @@
 
 const dgram = require('dgram')
 const path = require('path')
+const os = require('os')
 const spawn = require('child_process').spawn
 const test = require('tap').test
 
 const messages = require(path.join(__dirname, 'fixtures', 'messages'))
-const appPath = path.join(path.resolve(__dirname, '..', 'index'))
+const appPath = path.join(path.resolve(__dirname, '..', 'cli'))
+const api = require(path.join(__dirname, '..', 'index'))
 
 test('displays help', (t) => {
   t.plan(1)
@@ -167,7 +169,12 @@ test('sends to udp', (t) => {
   })
   app.on('close', (code) => {
     socket.close()
-    t.is(code, 0)
+
+    if (os.type() === 'Windows_NT') {
+      t.is(code, null)
+    } else {
+      t.is(code, 0)
+    }
   })
   const socket = dgram.createSocket('udp4')
   socket.on('message', msg => {
@@ -186,4 +193,21 @@ test('sends to udp', (t) => {
     }
     app.stdin.end(`${messages.infoMessage}\n`)
   })
+})
+
+test('pino-papertrail api', (t) => {
+  t.plan(2)
+
+  const createWriteStream = api.createWriteStream
+  t.ok(createWriteStream(), 'should be able pass no options')
+
+  const options = {
+    appname: 'pino-papertrail',
+    echo: false,
+    host: 'papertrailapp.com',
+    port: '1234',
+    'message-only': false
+  }
+
+  t.ok(createWriteStream(options), 'should be able to pass options')
 })
