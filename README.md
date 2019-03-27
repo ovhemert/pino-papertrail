@@ -11,33 +11,27 @@
 This module provides a "transport" for [pino][pino] that forwards
 messages to the [papertrail][papertrail] log service through an UDPv4 socket. The module can echo the received logs or work silently.
 
-You should install `pino-papertrail` globally for ease of use:
+## Installation
+
+To use globally from command line:
 
 ```bash
-$ npm install --production -g pino-papertrail
+npm install -g pino-papertrail
 ```
 
-## Usage
-
-Given an application `foo` that logs via [pino][pino], and a papertrail destination that collects logs on port UDP `12345` on address `bar.papertrailapp.com`, you would use `pino-papertrail` like so:
+To include as a library in your project:
 
 ```bash
-$ node foo | pino-papertrail --host bar.papertrailapp.com --port 12345 --appname foo
+npm install pino-papertrail --save
 ```
 
-## Options
+## CLI
 
-You can pass the following options via cli arguments:
+Want to use `pino-papertrail` from the CLI? See the [CLI](./docs/CLI.md) documentation for details.
 
-|  Description | Short command | Full command |
-| ------------- | ------------- |-------------|
-| Display help information | `-h` | `--help` |
-| Display version | `-v` | `--version` |
-| Application name (default: pino) | `-a` | `--appname` |
-| Echo messages to the console (default: true) | `-e` | `--echo` |
-| Only send msg property as message to papertrail (default: false) | `-m` | `--message-only` |
-| Papertrail destination address (default: localhost) | `-H` | `--host` |
-| Papertrail destination port (default: 1234) | `-p` | `--port` |
+## API
+
+Want to use `pino-papertrail` as a library in your project? See the [API](./docs/API.md) documentation for details.
 
 ## Maintainers
 
