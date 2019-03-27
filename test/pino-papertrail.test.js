@@ -199,7 +199,7 @@ test('pino-papertrail api', (t) => {
   t.plan(2)
 
   const createWriteStream = api.createWriteStream
-  t.ok(createWriteStream(), 'should be able pass no options')
+  t.ok(createWriteStream(), 'should be able to pass no options')
 
   const options = {
     appname: 'pino-papertrail',
