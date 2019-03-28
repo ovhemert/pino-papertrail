@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path')
 
 const minimist = require('minimist')
-const pump = require('pump')
+const pumpify = require('pumpify')
 
 const pinoPapertrail = require('./lib/pino-papertrail')
 const pkg = require('./package.json')
@@ -54,4 +54,5 @@ function shutdown () {
 
 process.on('SIGTERM', function () { shutdown() })
 
-pump(process.stdin, parseJson, toSyslog, papertrail)
+const pipeline = pumpify(parseJson, toSyslog, papertrail)
+process.stdin.pipe(pipeline)
