@@ -42,7 +42,7 @@
     "fast-json-parse": "^1.0.3",
     "glossy": "^0.1.7",
     "minimist": "^1.2.0",
-    "pumpify": "^1.5.1",
+    "pumpify": "^2.0.0",
     "split2": "^3.1.1",
     "through2": "^3.0.1"
   }
