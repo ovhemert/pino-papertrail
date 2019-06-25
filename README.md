@@ -1,7 +1,6 @@
 # pino-papertrail
 
 [![Travis](https://img.shields.io/travis/com/ovhemert/pino-papertrail.svg?branch=master&logo=travis)](https://travis-ci.com/ovhemert/pino-papertrail)
-[![AppVeyor](https://img.shields.io/appveyor/ci/ovhemert/pino-papertrail.svg?logo=appveyor)](https://ci.appveyor.com/project/ovhemert/pino-papertrail)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8c926c3289f94f1fae220df626ebd9db)](https://www.codacy.com/app/ovhemert/pino-papertrail?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ovhemert/pino-papertrail&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/npm/pino-papertrail/badge.svg)](https://snyk.io/test/npm/pino-papertrail)
 [![Coverage Status](https://coveralls.io/repos/github/ovhemert/pino-papertrail/badge.svg?branch=master)](https://coveralls.io/github/ovhemert/pino-papertrail?branch=master)
