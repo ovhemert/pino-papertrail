@@ -52,7 +52,7 @@ test('parses message without time-prop', (t) => {
     t.ok(msg.includes('"info message"'))
     app.kill()
   })
-  let msg = messages.infoMessage.replace('"time":1532081790743,', '')
+  const msg = messages.infoMessage.replace('"time":1532081790743,', '')
   app.stdin.end(`${msg}\n`)
 })
 
