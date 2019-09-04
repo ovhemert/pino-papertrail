@@ -12,7 +12,7 @@ const api = require(path.join(__dirname, '..', 'index'))
 
 test('displays help', (t) => {
   t.plan(1)
-  const app = spawn('node', [appPath, '-h'])
+  const app = spawn('node', [appPath, '-c', 'udp', '-h'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     const res = (msg.indexOf('display help') > 0)
@@ -22,7 +22,7 @@ test('displays help', (t) => {
 
 test('displays version info', (t) => {
   t.plan(1)
-  const app = spawn('node', [appPath, '-v'])
+  const app = spawn('node', [appPath, '-c', 'udp', '-v'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     const res = msg.startsWith('pino-papertrail v')
@@ -32,7 +32,7 @@ test('displays version info', (t) => {
 
 test('skips non-json input', (t) => {
   t.plan(1)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp']) // use udp to prevent tcp connection error
   app.stdout.on('data', (data) => {
     t.fail('should not receive any data')
   })
@@ -44,7 +44,7 @@ test('skips non-json input', (t) => {
 
 test('parses message without time-prop', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<14>1 ' + (new Date()).getFullYear()))
@@ -58,7 +58,7 @@ test('parses message without time-prop', (t) => {
 
 test('parses trace message', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<15>1 2018'))
@@ -71,7 +71,7 @@ test('parses trace message', (t) => {
 
 test('parses debug message', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<15>1 2018'))
@@ -84,7 +84,7 @@ test('parses debug message', (t) => {
 
 test('parses info message', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<14>1 2018'))
@@ -97,7 +97,7 @@ test('parses info message', (t) => {
 
 test('parses warn message', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<12>1 2018'))
@@ -110,7 +110,7 @@ test('parses warn message', (t) => {
 
 test('parses error message', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<11>1 2018'))
@@ -123,7 +123,7 @@ test('parses error message', (t) => {
 
 test('parses fatal message', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<10>1 2018'))
@@ -136,7 +136,7 @@ test('parses fatal message', (t) => {
 
 test('parses fatal message', (t) => {
   t.plan(3)
-  const app = spawn('node', [appPath])
+  const app = spawn('node', [appPath, '-c', 'udp'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<10>1 2018'))
@@ -149,7 +149,7 @@ test('parses fatal message', (t) => {
 
 test('can forward only message to papertrail', (t) => {
   t.plan(4)
-  const app = spawn('node', [appPath, '-m'])
+  const app = spawn('node', [appPath, '-c', 'udp', '-m'])
   app.stdout.on('data', (data) => {
     const msg = data.toString()
     t.ok(msg.startsWith('<10>1 2018'))
@@ -163,7 +163,7 @@ test('can forward only message to papertrail', (t) => {
 
 test('sends to udp', (t) => {
   t.plan(2)
-  const app = spawn('node', [appPath, '-e', true, '-p', '12345'])
+  const app = spawn('node', [appPath, '-c', 'udp', '-e', true, '-p', '12345'])
   app.stdout.on('data', (data) => {
     t.fail('should not receive any data')
   })
@@ -199,13 +199,16 @@ test('pino-papertrail api', (t) => {
   t.plan(2)
 
   const createWriteStream = api.createWriteStream
-  t.ok(createWriteStream(), 'should be able to pass no options')
+  t.ok(createWriteStream({
+    connection: 'udp'
+  }), 'should be able to pass no options')
 
   const options = {
     appname: 'pino-papertrail',
     echo: false,
     host: 'papertrailapp.com',
     port: '1234',
+    connection: 'udp',
     'message-only': false
   }
 
