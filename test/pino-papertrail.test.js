@@ -5,6 +5,9 @@ const path = require('path')
 const os = require('os')
 const spawn = require('child_process').spawn
 const test = require('tap').test
+const sinon = require('sinon')
+const net = require('net')
+const tls = require('tls')
 
 const messages = require(path.join(__dirname, 'fixtures', 'messages'))
 const appPath = path.join(path.resolve(__dirname, '..', 'cli'))
@@ -195,19 +198,92 @@ test('sends to udp', (t) => {
   })
 })
 
-test('pino-papertrail api', (t) => {
-  t.plan(2)
+test('pino-papertrail api (no option)', (t) => {
+  t.plan(1)
+  t.ok(api.createWriteStream(), 'should be able to pass no options')
+})
 
-  const createWriteStream = api.createWriteStream
-  t.ok(createWriteStream(), 'should be able to pass no options')
+test('pino-papertrail api (udp)', (t) => {
+  t.plan(1)
 
   const options = {
     appname: 'pino-papertrail',
     echo: false,
     host: 'papertrailapp.com',
     port: '1234',
+    connection: 'udp',
     'message-only': false
   }
 
-  t.ok(createWriteStream(options), 'should be able to pass options')
+  t.ok(api.createWriteStream(options), 'should be able to pass options')
 })
+
+function testApiTcp (t, connection, echo) {
+  t.plan(9)
+
+  const socket = {
+    setKeepAlive: sinon.fake(),
+    setNoDelay: sinon.fake(),
+    on: sinon.fake(),
+    write: sinon.fake()
+  }
+  const connect = sinon.fake.returns(socket)
+  const log = sinon.fake()
+
+  sinon.replace(connection === 'tcp' ? net : tls, 'connect', connect)
+
+  if (echo) {
+    sinon.replace(console, 'log', log)
+  }
+
+  const createWriteStream = api.createWriteStream
+
+  const options = {
+    appname: 'pino-papertrail',
+    echo: echo,
+    host: 'papertrailapp.com',
+    port: '1234',
+    connection: connection,
+    'message-only': false
+  }
+
+  const writeStream = createWriteStream(options)
+  t.ok(writeStream)
+  t.ok(connect.called)
+
+  // should be able to write before a connection is made
+  writeStream.write(`${messages.infoMessage}\n`, () => {
+    t.ok(socket.write.notCalled)
+
+    // accept connection, run callback
+    connect.lastCall.lastArg()
+
+    // should be able to write after a connection is made
+    writeStream.write(`${messages.warnMessage}\n`, () => {
+      t.ok(socket.write.calledTwice)
+      t.ok(socket.write.getCall(0).args[0].toString().includes(messages.infoMessage))
+      t.ok(socket.write.getCall(1).args[0].toString().includes(messages.warnMessage))
+
+      // close connection
+      t.ok(socket.on.calledOnce)
+      t.ok(socket.on.lastCall.args[0] === 'end')
+      socket.on.lastCall.lastArg()
+
+      // should auto reconnect
+      t.ok(connect.calledTwice)
+
+      // accept connection, run callback
+      connect.lastCall.lastArg()
+
+      sinon.restore()
+
+      t.end()
+    })
+  })
+}
+
+// sinon-using tests cannot be run concurrently
+test('pino-papertrail api (tcp)', (t) => testApiTcp(t, 'tcp', false))
+  .then(() => {
+    test('pino-papertrail api (tls)', (t) => testApiTcp(t, 'tls', true))
+  })
