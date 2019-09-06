@@ -26,7 +26,7 @@ const options = {
     echo: true,
     host: 'localhost',
     port: '1234',
-    connection: 'tls',
+    connection: 'udp',
     'message-only': false
   }
 }
