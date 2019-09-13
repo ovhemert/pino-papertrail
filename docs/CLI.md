@@ -27,3 +27,4 @@ You can pass the following options via cli arguments:
 | Only send msg property as message to papertrail (default: false) | `-m`          | `--message-only` |
 | Papertrail destination address (default: localhost)              | `-H`          | `--host`         |
 | Papertrail destination port (default: 1234)                      | `-p`          | `--port`         |
+| Papertrail connection (tls/tcp/udp, default: udp)                | `-c`          | `--connection`   |
