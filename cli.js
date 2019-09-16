@@ -17,6 +17,7 @@ const options = {
     echo: 'e',
     host: 'H',
     port: 'p',
+    connection: 'c',
     appname: 'a',
     'message-only': 'm'
   },
@@ -25,6 +26,7 @@ const options = {
     echo: true,
     host: 'localhost',
     port: '1234',
+    connection: 'udp',
     'message-only': false
   }
 }
