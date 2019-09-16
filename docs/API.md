@@ -43,5 +43,6 @@ You can pass the following properties in an options object:
 | appname (default: pino)       | string  | Application name                                |
 | host (default: localhost)     | string  | Papertrail destination address                  |
 | port (default: 1234)          | number  | Papertrail destination port                     |
+| connection (default: udp)     | string  | Papertrail connection method (tls/tcp/udp)      |
 | echo (default: true)          | boolean | Echo messages to the console                    |
 | message-only (default: false) | boolean | Only send msg property as message to papertrail |
