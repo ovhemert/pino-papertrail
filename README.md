@@ -8,7 +8,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 This module provides a "transport" for [pino][pino] that forwards
-messages to the [papertrail][papertrail] log service through an UDPv4 socket. The module can echo the received logs or work silently.
+messages to the [papertrail][papertrail] log service through udp/tcp/tls. The module can echo the received logs or work silently.
 
 ## Installation
 
