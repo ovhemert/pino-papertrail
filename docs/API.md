@@ -38,11 +38,14 @@ const writeStream = papertrail.createWriteStream({
 
 You can pass the following properties in an options object:
 
-| Property                      | Type    | Description                                     |
-|-------------------------------|---------|-------------------------------------------------|
-| appname (default: pino)       | string  | Application name                                |
-| host (default: localhost)     | string  | Papertrail destination address                  |
-| port (default: 1234)          | number  | Papertrail destination port                     |
-| connection (default: udp)     | string  | Papertrail connection method (tls/tcp/udp)      |
-| echo (default: true)          | boolean | Echo messages to the console                    |
-| message-only (default: false) | boolean | Only send msg property as message to papertrail |
+| Property                                                | Type              | Description                                         |
+|---------------------------------------------------------|-------------------|-----------------------------------------------------|
+| appname (default: pino)                                 | string            | Application name                                    |
+| host (default: localhost)                               | string            | Papertrail destination address                      |
+| port (default: 1234)                                    | number            | Papertrail destination port                         |
+| connection (default: udp)                               | string            | Papertrail connection method (tls/tcp/udp)          |
+| echo (default: true)                                    | boolean           | Echo messages to the console                        |
+| message-only (default: false)                           | boolean           | Only send msg property as message to papertrail     |
+| backoff-strategy (default: `new ExponentialStrategy()`) | [BackoffStrategy] | Retry backoff strategy for any tls/tcp socket error |
+
+[BackoffStrategy]: https://github.com/MathieuTurcotte/node-backoff#interface-backoffstrategy
