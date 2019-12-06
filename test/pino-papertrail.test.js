@@ -219,7 +219,9 @@ test('pino-papertrail api (udp)', (t) => {
 })
 
 function testApiTcp (t, connection, echo) {
-  t.plan(9)
+  t.plan(11)
+
+  const clock = require('lolex').install()
 
   const socket = {
     setKeepAlive: sinon.fake(),
@@ -251,6 +253,19 @@ function testApiTcp (t, connection, echo) {
   t.ok(writeStream)
   t.ok(connect.called)
 
+  t.ok(socket.on.calledTwice)
+  const onErrorCall = socket.on.getCall(0)
+  const onEndCall = socket.on.getCall(1)
+  t.ok(onErrorCall.args[0] === 'error')
+  t.ok(onEndCall.args[0] === 'end')
+
+  // connection error (refuse)
+  onErrorCall.lastArg(new Error('connect ECONNREFUSED'))
+  clock.runAll()
+
+  // should auto reconnect
+  t.ok(connect.calledTwice)
+
   // should be able to write before a connection is made
   writeStream.write(`${messages.infoMessage}\n`, () => {
     t.ok(socket.write.notCalled)
@@ -265,15 +280,15 @@ function testApiTcp (t, connection, echo) {
       t.ok(socket.write.getCall(1).args[0].toString().includes(messages.warnMessage))
 
       // close connection
-      t.ok(socket.on.calledOnce)
-      t.ok(socket.on.lastCall.args[0] === 'end')
-      socket.on.lastCall.lastArg()
+      onEndCall.lastArg()
 
       // should auto reconnect
-      t.ok(connect.calledTwice)
+      t.ok(connect.calledThrice)
 
       // accept connection, run callback
       connect.lastCall.lastArg()
+
+      clock.uninstall()
 
       sinon.restore()
 

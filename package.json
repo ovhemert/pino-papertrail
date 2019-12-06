@@ -39,6 +39,7 @@
     "tap": "^14.6.4"
   },
   "dependencies": {
+    "backoff": "^2.5.0",
     "fast-json-parse": "^1.0.3",
     "glossy": "^0.1.7",
     "minimist": "^1.2.0",
