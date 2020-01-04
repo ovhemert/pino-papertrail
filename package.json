@@ -33,17 +33,17 @@
     "test"
   ],
   "devDependencies": {
-    "pino": "^5.13.3",
-    "sinon": "^7.4.2",
-    "standard": "^14.3.0",
-    "tap": "^14.6.4"
+    "pino": "^5.15.0",
+    "sinon": "^8.0.2",
+    "standard": "^14.3.1",
+    "tap": "^14.10.5"
   },
   "dependencies": {
     "backoff": "^2.5.0",
     "fast-json-parse": "^1.0.3",
     "glossy": "^0.1.7",
     "minimist": "^1.2.0",
-    "pumpify": "^2.0.0",
+    "pumpify": "^2.0.1",
     "split2": "^3.1.1",
     "stream-buffers": "^3.0.2",
     "through2": "^3.0.1"
