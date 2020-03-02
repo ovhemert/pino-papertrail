@@ -221,7 +221,7 @@ test('pino-papertrail api (udp)', (t) => {
 function testApiTcp (t, connection, echo) {
   t.plan(11)
 
-  const clock = require('lolex').install()
+  const clock = require('@sinonjs/fake-timers').install()
 
   const socket = {
     setKeepAlive: sinon.fake(),
