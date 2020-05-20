@@ -4,6 +4,7 @@
   "description": "A transport for pino that sends messages to Papertrail",
   "homepage": "https://github.com/ovhemert/pino-papertrail",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "standard",
     "test": "standard && tap test/*.test.js --coverage --100",
