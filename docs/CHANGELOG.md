@@ -23,6 +23,11 @@ Changes are grouped by:
 
 - Backoff strategy for any tls/tcp socket errors by [@andyli](https://github.com/andyli)
 - Documentation for code quality by [@ovhemert](https://github.com/ovhemert)
+- TypeScript types by [@jaulz](https://github.com/jaulz)
+
+### Fixed
+
+- Resume logging after UDP failure [@mattiash](https://github.com/mattiash)
 
 ### Removed
 
