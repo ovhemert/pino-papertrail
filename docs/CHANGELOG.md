@@ -13,12 +13,25 @@ Changes are grouped by:
 `Fixed` for any bug fixes
 `Security` in case of vulnerabilities
 
-## [Unreleased](https://github.com/ovhemert/pino-papertrail/compare/v1.3.0...HEAD)
+## [Unreleased](https://github.com/ovhemert/pino-papertrail/compare/v2.0.0...HEAD)
+
+...
+
+## [2.0.0](https://github.com/ovhemert/pino-papertrail/compare/v1.3.0...v2.0.0) - 2020-06-02
 
 ### Added
 
 - Backoff strategy for any tls/tcp socket errors by [@andyli](https://github.com/andyli)
 - Documentation for code quality by [@ovhemert](https://github.com/ovhemert)
+- TypeScript types by [@jaulz](https://github.com/jaulz)
+
+### Fixed
+
+- Resume logging after UDP failure [@mattiash](https://github.com/mattiash)
+
+### Removed
+
+- Node v8.x support by [@ovhemert](https://github.com/ovhemert)
 
 ## [1.3.0](https://github.com/ovhemert/pino-papertrail/compare/v1.2.5...v1.3.0) - 2019-09-16
 
