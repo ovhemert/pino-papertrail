@@ -198,6 +198,23 @@ test('sends to udp', (t) => {
   })
 })
 
+test('logs error when DNS resolution fails', (t) => {
+  t.plan(2)
+  const app = spawn('node', [appPath, '-H', 'nosuchhost.example.com', '-e', true, '-p', '12345'])
+  app.stdout.on('data', (data) => {
+    t.ok(data.toString().startsWith('error'), 'shall log an error')
+    app.kill()
+  })
+  app.on('close', (code) => {
+    if (os.type() === 'Windows_NT') {
+      t.is(code, null)
+    } else {
+      t.is(code, 0)
+    }
+  })
+  app.stdin.end(`${messages.infoMessage}\n`)
+})
+
 test('pino-papertrail api (no option)', (t) => {
   t.plan(1)
   t.ok(api.createWriteStream(), 'should be able to pass no options')
