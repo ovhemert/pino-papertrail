@@ -13,7 +13,7 @@ const options = require('./options.json')
 const appname = 'my-project'
 const writeStream = papertrail.createWriteStream({ ...options, appname })
 // create pino loggger
-const logger = pinoms({ streams: [writeStream] })
+const logger = pinoms({ streams: [{ stream: writeStream }] })
 // log some events
 logger.info('Informational message')
 logger.error(new Error('things got bad'), 'error message')

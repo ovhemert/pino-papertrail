@@ -11,7 +11,7 @@ npm install -g pino-papertrail
 Given an application `foo` that logs via [pino][pino], and a papertrail destination that collects logs on port UDP `12345` on address `bar.papertrailapp.com`, you would use `pino-papertrail` like so:
 
 ```bash
-$ node foo | pino-papertrail --host bar.papertrailapp.com --port 12345 --appname foo
+node foo | pino-papertrail --host bar.papertrailapp.com --port 12345 --appname foo
 ```
 
 ## Options
