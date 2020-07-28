@@ -13,9 +13,19 @@ Changes are grouped by:
 `Fixed` for any bug fixes
 `Security` in case of vulnerabilities
 
-## [Unreleased](https://github.com/ovhemert/pino-papertrail/compare/v2.0.0...HEAD)
+## [Unreleased](https://github.com/ovhemert/pino-papertrail/compare/v2.1.0...HEAD)
 
 ...
+
+## [2.1.0](https://github.com/ovhemert/pino-papertrail/compare/v2.0.0...v2.1.0) - 2020-07-28
+
+### Added
+
+- Support and testing for Node.js v14.x by [@ovhemert](https://github.com/ovhemert)
+
+### Security
+
+- Fixed external vulnerabilities by upgrading dependencies by [@ovhemert](https://github.com/ovhemert)
 
 ## [2.0.0](https://github.com/ovhemert/pino-papertrail/compare/v1.3.0...v2.0.0) - 2020-06-02
 
