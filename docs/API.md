@@ -9,9 +9,14 @@ const papertrail = require('pino-papertrail')
 
 const pinoms = require('pino-multi-stream')
 // create the papertrail destination stream
-const options = require('./options.json')
-const appname = 'my-project'
-const writeStream = papertrail.createWriteStream({ ...options, appname })
+const writeStream = papertrail.createWriteStream({
+  host: 'logs.papertrailapp.com',
+  port: 12345,
+  hostname: 'my-host',
+  appname: 'my-app',
+  'message-only': true,
+  'prefix-level': true
+})
 // create pino loggger
 const logger = pinoms({ streams: [{ stream: writeStream }] })
 // log some events
@@ -29,8 +34,12 @@ Example:
 
 ```js
 const writeStream = papertrail.createWriteStream({
-  ...require('/options.json'),
-  appname: 'my-project'
+  host: 'logs.papertrailapp.com',
+  port: 12345,
+  hostname: 'my-host',
+  appname: 'my-app',
+  'message-only': true,
+  'prefix-level': true
 })
 ````
 
@@ -40,12 +49,14 @@ You can pass the following properties in an options object:
 
 | Property                                                | Type              | Description                                         |
 |---------------------------------------------------------|-------------------|-----------------------------------------------------|
+| hostname (default: system hostname)                     | string            | Host name                                           |
 | appname (default: pino)                                 | string            | Application name                                    |
 | host (default: localhost)                               | string            | Papertrail destination address                      |
 | port (default: 1234)                                    | number            | Papertrail destination port                         |
 | connection (default: udp)                               | string            | Papertrail connection method (tls/tcp/udp)          |
 | echo (default: true)                                    | boolean           | Echo messages to the console                        |
 | message-only (default: false)                           | boolean           | Only send msg property as message to papertrail     |
+| prefix-level (default: false)                           | boolean           | prefix messages with the log level                  |
 | backoff-strategy (default: `new ExponentialStrategy()`) | [BackoffStrategy] | Retry backoff strategy for any tls/tcp socket error |
 
 [BackoffStrategy]: https://github.com/MathieuTurcotte/node-backoff#interface-backoffstrategy
