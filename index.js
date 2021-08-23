@@ -9,14 +9,15 @@ const defaultOptions = {
   host: 'localhost',
   port: '1234',
   connection: 'udp',
-  'message-only': false
+  'message-only': false,
+  'prefix-level': false,
 }
 
 module.exports.createWriteStream = (opts) => {
-  const { appname, echo, host, port, connection, 'message-only': messageOnly } = { ...defaultOptions, ...opts }
+  const { hostname, appname, echo, host, port, connection, 'message-only': messageOnly, 'prefix-level': prefixLevel } = { ...defaultOptions, ...opts }
 
   const parseJson = pinoPapertrail.parseJson()
-  const toSyslog = pinoPapertrail.toSyslog({ appname, 'message-only': messageOnly })
+  const toSyslog = pinoPapertrail.toSyslog({ hostname, appname, 'message-only': messageOnly, 'prefix-level': prefixLevel })
   const papertrail = pinoPapertrail.toPapertrail({ echo, port, host, connection })
 
   return pumpify(parseJson, toSyslog, papertrail)
