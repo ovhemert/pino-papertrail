@@ -10,7 +10,7 @@ const defaultOptions = {
   port: '1234',
   connection: 'udp',
   'message-only': false,
-  'prefix-level': false,
+  'prefix-level': false
 }
 
 module.exports.createWriteStream = (opts) => {
