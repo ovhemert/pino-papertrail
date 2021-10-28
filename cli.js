@@ -54,7 +54,7 @@ function shutdown () {
   }
 }
 
-process.on('SIGTERM', function () { shutdown() })
+//process.on('SIGTERM', function () { shutdown() })
 
 const pipeline = pumpify(parseJson, toSyslog, papertrail)
 process.stdin.pipe(pipeline)
