@@ -13,3 +13,5 @@
   -H  | --host              the hostname of papertrail; default: localhost
   -p  | --port              the port of papertrail; default: 1234
   -m  | --message-only      only send msg property to papertrail. default: false (=send json)
+  --no-sigterm-exit         prevent exit on SIGTERM
+  --no-pipe-exit            prevent exit when process.stdin ends

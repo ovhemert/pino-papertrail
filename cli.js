@@ -27,8 +27,16 @@ const options = {
     host: 'localhost',
     port: '1234',
     connection: 'udp',
-    'message-only': false
-  }
+    'message-only': false,
+    'sigterm-exit': true,
+    'pipe-exit': true
+  },
+  boolean: [
+    'echo',
+    'message-only',
+    'sigterm-exit',
+    'pipe-exit'
+  ]
 }
 
 const argv = minimist(process.argv.slice(2), options)
@@ -54,7 +62,20 @@ function shutdown () {
   }
 }
 
-process.on('SIGTERM', function () { shutdown() })
+process.on('SIGTERM', function () {
+  if(!argv['sigterm-exit']) {
+    return
+  }
+  shutdown()
+})
+
+process.stdin.on('end', function () {
+  if(!argv['pipe-exit']) {
+    return
+  }
+  shutdown()
+})
 
 const pipeline = pumpify(parseJson, toSyslog, papertrail)
 process.stdin.pipe(pipeline)
+
