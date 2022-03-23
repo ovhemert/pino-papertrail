@@ -45,7 +45,7 @@
     "backoff": "^2.5.0",
     "fast-json-parse": "^1.0.3",
     "glossy": "^0.1.7",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "pumpify": "^2.0.1",
     "split2": "^3.2.2",
     "stream-buffers": "^3.0.2",
